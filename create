@@ -1,0 +1,39 @@
+#!/bin/bash
+
+cd challenges
+goAhead=false
+
+while [ $goAhead == false ]; do
+  read -p "Name of function? " name
+  name=`echo $name | sed 's/ *$//g'`
+  filename=${name}.js
+
+  allFiles=()
+  for file in $(ls); do
+    allFiles+=($file)
+  done
+
+  if [[ $filename =~ ^[0-9]+ ]]; then
+    echo 'Function names cannot start with a number. Try a different name...'
+  elif [[ "${allFiles[@]}" =~ $filename ]]; then
+    read -p "${filename} is found in the directory, do you want to overwrite it? (y/n) " overwrite
+    if [ $overwrite == 'y' ]; then
+      goAhead=true
+    else
+      echo 'Try a different name...'
+    fi
+  else
+    goAhead=true
+  fi
+done
+
+echo 'Creating file...'
+sed "s/{{name}}/${name}/g" ../template > ./$filename
+read -p "File created! Open in VS Code? (y/n) " open
+if [ $open == 'y' ]; then
+  code .
+  code -r $filename
+fi
+
+cd -
+echo 'Done! Enjoy your new challenge!'

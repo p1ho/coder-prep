@@ -1,0 +1,13 @@
+function {{name}}() {
+  // enter your solution here
+}
+
+var testcases = [
+  {
+    input: ['arguments-here'],
+    output: 'expected-output-here',
+  },
+  // enter more test cases here
+]
+
+require('../test')({{name}}, testcases)
