@@ -8,7 +8,7 @@ This project makes it easy to bootstrap a problem with its testcases, this allow
 
 # Usage
 
-`$ chmod 777 create` to make the bash script executable
+`$ chmod u+x create` to make the bash script executable
 
 `$ ./create` to create a new problem
 
